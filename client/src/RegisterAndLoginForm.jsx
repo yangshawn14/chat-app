@@ -21,12 +21,14 @@ export default function RegisterAndLoginForm() {
                     onChange={e => setUsername(e.target.value)}
                     type="text"
                     placeholder="username"
-                    className="block w-full rounded-sm p-2 mb-2 border" />
+                    className="block w-full rounded-sm p-2 mb-2 border"
+                    autoComplete="username" />
                 <input value={password}
                     onChange={e => setPassword(e.target.value)}
                     type="password"
                     placeholder="password"
-                    className="block w-full rounded-sm p-2 mb-2 border" />
+                    className="block w-full rounded-sm p-2 mb-2 border"
+                    autoComplete="current-password" />
                 <button className="bg-blue-500 text-white block w-full rounded-sm p-2">
                     {isLoginOrRegister === 'register' ? 'Register' : 'Login'}
                 </button>
