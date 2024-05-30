@@ -4,8 +4,9 @@ import Avatar from "./Avatar";
 export default function Chat() {
     const [ws, setWs] = useState(null);
     const [onlinePeople, setOnlinePeople] = useState({});
+    const [selectedUserId, setSelectedUserId] = useState(null);
     useEffect(() => {
-        const ws = new WebSocket('ws://localhost:4000');
+        const ws = new WebSocket('ws://localhost:4040');
         setWs(ws);
         ws.addEventListener('message', handleMessage)
     }, []);
@@ -24,6 +25,7 @@ export default function Chat() {
             showOnlinePeople(messageData.online);
         }
     }
+
     return (
         <div className="flex h-screen">
             <div className="bg-white-100 w-1/3 pl-4 pt-4">
@@ -36,7 +38,9 @@ export default function Chat() {
                     ChatApp
                 </div>
                 {Object.keys(onlinePeople).map(userId => (
-                    <div key={userId} className="border-b border-gray-100 py-2 flex gap-2 items-center cursor-pointer">
+                    <div key={userId}
+                        onClick={() => setSelectedUserId(userId)}
+                        className={"border-b border-gray-100 py-2 flex gap-2 items-center cursor-pointer " + (userId === selectedUserId ? 'bg-blue-50' : '')}>
                         <Avatar username={onlinePeople[userId]} userId={userId} />
                         <span className="text-gray-800">{onlinePeople[userId]}</span>
 
