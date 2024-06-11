@@ -8,6 +8,9 @@ export default function Avatar({ userId, username, online }) {
     const colorIndex = userIdBase10 % colors.length;
     const color = colors[colorIndex];
 
+    // Add console log to inspect the username value
+    console.log("Avatar Component - username:", username);
+
     return (
         <div className={"w-8 h-8 relative rounded-full flex items-center " + color}>
             <div className="text-center w-full opacity-70">

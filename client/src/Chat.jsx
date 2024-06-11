@@ -46,7 +46,6 @@ export default function Chat() {
             if (messageData.sender === selectedUserId) {
                 setMessages(prev => ([...prev, { ...messageData }]));
             }
-
         }
     }
 
@@ -107,6 +106,8 @@ export default function Chat() {
 
     useEffect(() => {
         axios.get('/people').then(res => {
+            // Add this line to log the fetched data
+            console.log('Fetched people:', res.data);
             const offlinePeopleArr = res.data
                 .filter(p => p._id !== id)
                 .filter(p => !Object.keys(onlinePeople).includes(p._id));
@@ -137,6 +138,7 @@ export default function Chat() {
             <div className="bg-white-100 w-1/3 flex flex-col">
                 <div className="flex-grow">
                     <Logo />
+                    {console.log("Rendering Contacts:", onlinePeopleExcludingUser, offlinePeople)}
                     {Object.keys(onlinePeopleExcludingUser).map(userId => (
                         <Contact
                             key={userId}

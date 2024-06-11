@@ -1,6 +1,8 @@
 import Avatar from "../Avatar";
 
 export default function Contact({ id, username, onClick, selected, online }) {
+    // Check username here
+    console.log("Contact Component - Username:", username, "ID:", id);
     return (
         <div key={id}
             onClick={() => onClick(id)}
